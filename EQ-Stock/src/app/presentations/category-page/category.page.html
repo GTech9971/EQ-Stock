@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+    <ion-list>
+
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="4" *ngFor="let category of this.categoryList$ | async">
+                    <ion-card button="true" style="max-width: 250px; max-height:250px">
+                        <ion-card-header>
+                            <ion-card-title>
+                                {{category.CategoryName}}
+                                <ion-badge color="danger">{{category.CategoryCount}}</ion-badge>
+                            </ion-card-title>
+
+                        </ion-card-header>
+                        <ion-card-content>
+                            Awesome content
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+
+
+    </ion-list>
+
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="onClickAddCategoryBtn()">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
