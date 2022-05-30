@@ -22,6 +22,15 @@ export class CategoryPage implements OnInit {
     ngOnInit(): void {
     }
 
+    /**
+     * カテゴリーを削除する
+     * @param category 
+     */
+    async onClickDelCategory(category: CategoryModel, popver: any) {
+        await this.categoryService.deleteCategory(category.uid);
+        popver.dismiss();
+    }
+
     async onClickAddCategoryBtn() {
         const alert: HTMLIonAlertElement = await this.alertCtrl.create({
             header: 'カテゴリの追加',

@@ -16,10 +16,33 @@
                 <ion-col size="4" *ngFor="let category of this.categoryList$ | async">
                     <ion-card button="true" style="max-width: 250px; max-height:250px">
                         <ion-card-header>
-                            <ion-card-title>
-                                {{category.CategoryName}}
-                                <ion-badge color="danger">{{category.CategoryCount}}</ion-badge>
-                            </ion-card-title>
+
+                            <ion-row>
+                                <ion-col size="11">
+
+                                    <ion-card-title>
+                                        {{category.CategoryName}}
+                                        <ion-badge color="danger">{{category.CategoryCount}}</ion-badge>
+                                    </ion-card-title>
+                                </ion-col>
+                                <ion-col size="1">
+                                    <ion-icon id="hover-button-{{category.uid}}" name="ellipsis-vertical-outline">
+                                    </ion-icon>
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-popover #popver trigger="hover-button-{{category.uid}}">
+                                <ng-template>
+                                    <ion-content>
+                                        <ion-list>
+                                            <ion-item button="true" (click)="onClickDelCategory(category, popver)">
+                                                <ion-label>削除</ion-label>
+                                                <ion-icon name="trash-outline" color="danger"></ion-icon>
+                                            </ion-item>
+                                        </ion-list>
+                                    </ion-content>
+                                </ng-template>
+                            </ion-popover>
 
                         </ion-card-header>
                         <ion-card-content>

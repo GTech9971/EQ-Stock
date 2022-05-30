@@ -29,7 +29,7 @@ export class CategoryImplRepository extends CategoryRepository {
     }
 
     deleteCategory(uid: string): Promise<void> {
-        throw new Error("Method not implemented.");
+        return this.firestore.collection<CategoryModel>('categories').doc(uid).delete();
     }
 
     updateCategory(model: CategoryModel): Promise<void> {
