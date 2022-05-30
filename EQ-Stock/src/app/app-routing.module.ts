@@ -8,9 +8,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'category',
+    redirectTo: 'registry',
     pathMatch: 'full'
   },
+  {
+    path: 'registry',
+    loadChildren: () => import('./presentations/registry-eq-page/registry-eq.module').then(m => m.RegistryEqModule)
+  }
 ];
 
 @NgModule({

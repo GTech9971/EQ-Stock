@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            パーツ登録
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button color="primary" type="submit" (click)="onClickRegistryBtn()" [disabled]="this.valid === false">
+                登録
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <form [formGroup]="this.formGroup">
+        <ion-list>
+
+            <ion-item>
+                <ion-label position="stacked">パーツ名</ion-label>
+                <div *ngIf="this.partsName.invalid && (this.partsName.dirty || this.partsName.touched)">
+                    <ion-text color="danger">
+                        パーツ名は必須です
+                    </ion-text>
+                </div>
+                <ion-input type="text" placeholder="パーツ名" required="true" formControlName="partsName"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">製品名</ion-label>
+                <ion-input type="text" placeholder="製品名" formControlName="productName"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+                <ion-label position="stacked">カテゴリー</ion-label>
+                <div *ngIf="this.categoryUid.invalid && (this.categoryUid.dirty || this.categoryUid.touched)">
+                    <ion-text color="danger">
+                        カテゴリーは必須です
+                    </ion-text>
+                </div>
+                <ion-select placeholder="カテゴリーを選択" formControlName="categoryUid">
+                    <ng-container *ngFor="let category of this.categoryList$ | async">
+                        <ion-select-option value="{{category.uid}}">{{category.CategoryName}}</ion-select-option>
+                    </ng-container>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">コード</ion-label>
+                <ion-input type="text" placeholder="コード（通販）" formControlName="code"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">メモ</ion-label>
+                <ion-textarea rows="8" cols="5" placeholder="メモ（仕様など）" formControlName="memo"></ion-textarea>
+            </ion-item>
+
+
+        </ion-list>
+    </form>
+
+</ion-content>

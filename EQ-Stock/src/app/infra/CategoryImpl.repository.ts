@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { map } from "@firebase/util";
 import { Observable } from "rxjs";
 
 import { CategoryModel } from "../domain/model/resource/Category.model";
@@ -14,8 +15,8 @@ export class CategoryImplRepository extends CategoryRepository {
         super();
     }
 
-    fetchCategory(uid: string): Promise<CategoryModel> {
-        throw new Error("Method not implemented.");
+    fetchCategory(uid: string): AngularFirestoreDocument<CategoryModel> {
+        return this.firestore.collection<CategoryModel>('categories').doc(uid);
     }
 
     fetchAllCategory(): Observable<CategoryModel[]> {

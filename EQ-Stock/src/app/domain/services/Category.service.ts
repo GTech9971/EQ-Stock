@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AngularFirestoreDocument } from "@angular/fire/compat/firestore";
 import { Observable } from "rxjs";
 import { CategoryModel } from "../model/resource/Category.model";
 import { CategoryRepository } from "../repository/Category.repository";
@@ -11,7 +12,7 @@ export class CategoryService {
     constructor(private repository: CategoryRepository) {
     }
 
-    fetchCategory(uid: string): Promise<CategoryModel> {
+    fetchCategory(uid: string): AngularFirestoreDocument<CategoryModel> {
         return this.repository.fetchCategory(uid);
     }
 

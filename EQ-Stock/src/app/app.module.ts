@@ -11,10 +11,13 @@ import { CategoryRepository } from './domain/repository/Category.repository';
 import { CategoryImplRepository } from './infra/CategoryImpl.repository';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { PartsRepository } from './domain/repository/Parts.repository';
+import { PartsImplRepository } from './infra/PartsImpl.repository';
 
 const build: Provider[] = [
   { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   { provide: CategoryRepository, useClass: CategoryImplRepository },
+  { provide: PartsRepository, useClass: PartsImplRepository },
 ]
 
 @NgModule({
